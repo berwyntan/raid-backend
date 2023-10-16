@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const singleOrder = new mongoose.Schema({
+const singleOrderSchema = new mongoose.Schema({
     fruit: {
         type: String,
     },
@@ -16,7 +16,7 @@ const singleOrder = new mongoose.Schema({
 })
 
 const orderSchema = new mongoose.Schema({
-  orderInfo: [singleOrder],
+  orderInfo: [singleOrderSchema],
   total: {
     type: Number
   },
@@ -26,6 +26,7 @@ const orderSchema = new mongoose.Schema({
   },
 });
 
+const singleOrder = new mongoose.model("singleOrder", singleOrderSchema);
 const Order = new mongoose.model("Order", orderSchema);
 
-module.exports = Order;
+module.exports = { Order, singleOrder };
